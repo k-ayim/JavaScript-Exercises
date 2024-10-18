@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS the best</title>
+    <style>
+        body {
+            background-color:brown;
+        }
+    </style>
+</head>
+<body>
+    <!--1-->
+    <h2 id="type">What can JavaScript Do?</h2>
+    <button type="button" onclick="document.getElementById('type').innerHTML = 'JavaScript can do many things'">Click</button> <br>
+
+    <!--2-->
+    <h2>Change the image</h2>
+    <button type="button" onclick='document.getElementById("image").src="./stock-photo-full-length-casual-portrait-of-handsome-tall-young-man-isolated-on-white-background-2214704849.jpg"'>Tall</button>
+    <img id="image" src="./stock-photo-full-length-casual-portrait-of-handsome-tall-young-man-isolated-on-white-background-2214704849.jpg" style="width:350px">
+    <button type="button" onclick="document.getElementById('image').src='Ethan_Crough,_male_dwarf.jpg'">Little</button>
+
+    <!--3-->
+    <h2>Bold</h2>
+    <p id="demo">This is a paragraph that will become bold when the button is clicked.</p>
+
+    <button type="button" onclick="makeBold()">Make Bold</button>
+
+    <script>
+        function makeBold() {
+            document.getElementById('demo').style.fontWeight = 'bold';
+        }
+    </script> <br>
+
+    <!--4-->
+    <h2>Date</h2>
+    <p id="date" style="display:none;">Today's date is: October 17</p>
+
+    <button type="button" onclick="hideDate()">Hide Date</button>
+    <button type="button" onclick="showDate()">Show Date</button>
+
+    <script>
+        function hideDate() {
+            document.getElementById('date').style.display = 'none';
+        }
+
+        function showDate() {
+            document.getElementById('date').style.display = 'block';
+        }
+    </script>
+
+    <!--11-->
+    <h2>Temperature Converter</h2>
+    
+    <label for="celsius">Enter Celsius: </label>
+    <input type="number" id="celsius">
+    <button type="button" onclick="celsiusToFahrenheit()">Convert to Fahrenheit</button>
+    <p id="celsiusOutput"></p>
+
+    <br>
+
+    <label for="fahrenheit">Enter Fahrenheit: </label>
+    <input type="number" id="fahrenheit">
+    <button type="button" onclick="fahrenheitToCelsius()">Convert to Celsius</button>
+    <p id="fahrenheitOutput"></p>
+
+    <script>
+        function celsiusToFahrenheit() {
+            var celsius = document.getElementById('celsius').value;
+            var fahrenheit = (celsius * 9 / 5) + 32;
+            document.getElementById('celsiusOutput').innerHTML = celsius + "°C is " + fahrenheit + "°F";
+        }
+
+        function fahrenheitToCelsius() {
+            var fahrenheit = document.getElementById('fahrenheit').value;
+            var celsius = (fahrenheit - 32) * 5 / 9;
+            document.getElementById('fahrenheitOutput').innerHTML = fahrenheit + "°F is " + celsius + "°C";
+        }
+    </script>
+
+    <!--12-->
+    <h2>Even or Odd</h2>
+
+    <label for="numberInput">Enter a number: </label>
+    <input type="number" id="numberInput">
+    <button type="button" onclick="checkEvenOdd()">Check</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function checkEvenOdd() {
+            var number = document.getElementById('numberInput').value;
+            if (number % 2 === 0) {
+                document.getElementById('result').innerHTML = number + " is an even number.";
+            } else {
+                document.getElementById('result').innerHTML = number + " is an odd number.";
+            }
+        }
+    </script>
+
+    <!--13-->
+    <h2>Find the Largest and Smallest Number</h2>
+
+    <label for="num1">Enter first number: </label>
+    <input type="number" id="num1"><br><br>
+
+    <label for="num2">Enter second number: </label>
+    <input type="number" id="num2"><br><br>
+
+    <label for="num3">Enter third number: </label>
+    <input type="number" id="num3"><br><br>
+
+    <button onclick="findLargestAndSmallest()">Find Largest and Smallest</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function findLargestAndSmallest() {
+            var num1 = parseFloat(document.getElementById('num1').value);
+            var num2 = parseFloat(document.getElementById('num2').value);
+            var num3 = parseFloat(document.getElementById('num3').value);
+
+            var largest = Math.max(num1, num2, num3);
+            var smallest = Math.min(num1, num2, num3);
+
+            document.getElementById('result').innerHTML = 
+                "Largest number is: " + largest + "<br>" + "Smallest number is: " + smallest;
+        }
+    </script>
+
+    <!--14-->
+    <h2>Heron's Formula</h2>
+
+    <label for="sideA">Enter side A: </label>
+    <input type="number" id="sideA" placeholder="Side A"><br><br>
+
+    <label for="sideB">Enter side B: </label>
+    <input type="number" id="sideB" placeholder="Side B"><br><br>
+
+    <label for="sideC">Enter side C: </label>
+    <input type="number" id="sideC" placeholder="Side C"><br><br>
+
+    <button onclick="calculateArea()">Calculate Area</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function calculateArea() {
+            var a = parseFloat(document.getElementById('sideA').value);
+            var b = parseFloat(document.getElementById('sideB').value);
+            var c = parseFloat(document.getElementById('sideC').value);
+
+            if (isNaN(a) || isNaN(b) || isNaN(c)) {
+                alert('Please enter valid numbers for all sides.');
+                return;
+            }
+
+            var s = (a + b + c) / 2;
+
+            var area = Math.sqrt(s * (s - a) * (s - b) * (s - c));
+
+            if (isNaN(area)) {
+                document.getElementById('result').innerHTML = "Invalid triangle sides.";
+            } else {
+                document.getElementById('result').innerHTML = "The area of the triangle is: " + area.toFixed(2);
+            }
+        }
+    </script>
+
+    <!--15-->
+    <h2>Factorial Calculator</h2>
+
+    <label for="factorialInput">Enter a number: </label>
+    <input type="number" id="factorialInput" placeholder="Enter a number">
+    <button type="button" onclick="calculateFactorial()">Calculate Factorial</button>
+    
+    <p id="factorialResult"></p>
+    
+    <script>
+        function calculateFactorial() {
+            var n = document.getElementById('factorialInput').value;
+            var result = 1;
+    
+            if (n < 0) {
+                document.getElementById('factorialResult').innerHTML = "Factorial is not defined for negative numbers.";
+                return;
+            }
+    
+            for (var i = 1; i <= n; i++) {
+                result *= i;
+            }
+    
+            document.getElementById('factorialResult').innerHTML = "Factorial of " + n + " is " + result;
+        }
+    </script>
+
+    <!--16-->
+    <h2>Vowel and Consonant Counter</h2>
+
+    <label for="inputString">Enter a string: </label>
+    <input type="text" id="inputString"><br><br>
+
+    <button onclick="countVowelsAndConsonants()">Count Vowels and Consonants</button>
+
+    <p id="result"></p>
+
+    <script>
+        function countVowelsAndConsonants() {
+            var str = document.getElementById('inputString').value.toLowerCase();
+            var vowelsCount = 0;
+            var consonantsCount = 0;
+
+            var vowels = ['a', 'e', 'i', 'o', 'u'];
+
+            for (var i = 0; i < str.length; i++) {
+                var char = str[i];
+                if (vowels.includes(char)) {
+                    vowelsCount++;
+                } else if (char >= 'a' && char <= 'z') { 
+                    consonantsCount++;
+                }
+            }
+
+            document.getElementById('result').innerHTML = 
+                "Vowels: " + vowelsCount + "<br>Consonants: " + consonantsCount;
+        }
+    </script>
+
+    <!--17-->
+    <h2>Seconds into Hours and Minutes</h2>
+
+    <label for="secondsInput">Enter seconds: </label>
+    <input type="number" id="secondsInput"><br><br>
+
+    <button onclick="convertSeconds()">Convert</button>
+
+    <p id="result"></p>
+
+    <script>
+        function convertSeconds() {
+            var seconds = parseFloat(document.getElementById('secondsInput').value);
+
+            if (isNaN(seconds) || seconds < 0) {
+                alert('Please enter a valid number of seconds.');
+                return;
+            }
+
+            var minutes = (seconds / 60).toFixed(4);
+            var hours = (seconds / 3600).toFixed(4);
+
+            document.getElementById('result').innerHTML = 
+                seconds + " seconds is equivalent to:<br>" + 
+                minutes + " minutes<br>" + hours + " hours.";
+        }
+    </script>
+
+    <!--18-->
+    <h2>Find the Most Frequent Number in an Array</h1>
+
+    <label for="arrayInput">Enter a comma-separated array of numbers: </label>
+    <input type="text" id="arrayInput"><br><br>
+
+    <button onclick="findMostFrequent()">Find Most Frequent Number</button>
+
+    <p id="result"></p>
+
+    <script>
+        function findMostFrequent() {
+            var input = document.getElementById('arrayInput').value;
+            var array = input.split(',').map(Number);  
+
+            var frequency = {};
+            var maxCount = 0;
+            var mostFrequent;
+
+            for (var i = 0; i < array.length; i++) {
+                var num = array[i];
+
+                if (!isNaN(num)) {  
+                    frequency[num] = (frequency[num] || 0) + 1;
+
+                    if (frequency[num] > maxCount) {
+                        maxCount = frequency[num];
+                        mostFrequent = num;
+                    }
+                }
+            }
+
+            if (mostFrequent !== undefined) {
+                document.getElementById('result').innerHTML = 
+                    "The most frequent number is: " + mostFrequent + "<br>It appears " + maxCount + " times.";
+            } else {
+                document.getElementById('result').innerHTML = "Please enter a valid array of numbers.";
+            }
+        }
+    </script>
+
+    <!--19-->
+    <h2>Fibonacci Calculator</h2>
+
+    <label for="fibonacciInput">Enter the number of terms: </label>
+    <input type="number" id="fibonacciInput">
+    <button type="button" onclick="calculateFibonacci()">Calculate</button>
+    
+    <p id="fibonacciResult"></p>
+
+    <script>
+        function calculateFibonacci() {
+            var n = document.getElementById('fibonacciInput').value;
+            var fibSeries = [];
+            var a = 0, b = 1, nextTerm;
+
+            for (var i = 1; i <= n; i++) {
+                fibSeries.push(a);
+                nextTerm = a + b;
+                a = b;
+                b = nextTerm;
+            }
+
+            document.getElementById('fibonacciResult').innerHTML = "Fibonacci Series: " + fibSeries.join(", ");
+        }
+    </script>
+
+    <!--20-->
+    <h2>Calculate Days Left Before New Year</h2>
+
+    <button onclick="calculateDaysLeft()">Calculate Days Left</button>
+
+    <p id="result"></p>
+
+    <script>
+        function calculateDaysLeft() {
+            var today = new Date();
+            
+            var nextYear = today.getFullYear() + 1;
+            var newYear = new Date(nextYear, 0, 1);  
+
+            var differenceInMillis = newYear - today;
+
+            var daysLeft = Math.ceil(differenceInMillis / (1000 * 60 * 60 * 24));
+
+            document.getElementById('result').innerHTML = "There are " + daysLeft + " days left until New Year.";
+        }
+    </script>
+    
+</body>
+</html>
